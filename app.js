@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const feedRoutes = require('./routes/feed');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 app.use(bodyParser.json());
@@ -14,7 +15,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/feed', feedRoutes)
+app.use('/feed', feedRoutes);
+app.use('/auth', authRoutes);
 
 mongoose.connect('mongodb+srv://root:123@node-blogpost-api.7m2ww.mongodb.net/node-blogpost-api?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true})
 .then(result => {
